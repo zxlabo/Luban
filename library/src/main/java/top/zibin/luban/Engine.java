@@ -71,6 +71,9 @@ class Engine {
     options.inSampleSize = computeSize();
 
     Bitmap tagBitmap = BitmapFactory.decodeStream(srcImg.open(), null, options);
+    if (tagBitmap == null) {
+        throw new IOException("bitmap is null");
+    }
     ByteArrayOutputStream stream = new ByteArrayOutputStream();
 
     if (Checker.SINGLE.isJPG(srcImg.open())) {
